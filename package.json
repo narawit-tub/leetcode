@@ -1,0 +1,23 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narawit-tub/leetcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narawit-tub/leetcode/issues"
+  },
+  "homepage": "https://github.com/narawit-tub/leetcode#readme",
+  "dependencies": {
+    "vitest": "^0.30.1"
+  }
+}

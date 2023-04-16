@@ -1,13 +1,4 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-
-// *** reproduce steps
-// 1. checking currentNumber is equal to any element in hashmap
-// 2. find diff
-// 3. store diff
+import {test, expect} from 'vitest'
 
 var twoSum = function(nums, target) {
     const difference_note = {}
@@ -22,3 +13,12 @@ var twoSum = function(nums, target) {
         difference_note[diff] = index;
     }
 };
+
+test.each([
+    {nums: [2,7,11,15], target: 9, expected: [0,1]}
+])
+('Checking', ({nums, target, expected}) => {
+    const result = twoSum(nums, target)
+    expect(result).toBe(expected);
+})
+
