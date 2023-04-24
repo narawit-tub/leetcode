@@ -1,4 +1,5 @@
 import { test, expect } from "vitest";
+import { arrayEqualIgnoreOrder } from "./utils/arrayEqualIgnoreOrder";
 
 function twoSum(nums: number[], target: number): number[] {
   const difference_note = {};
@@ -14,17 +15,6 @@ function twoSum(nums: number[], target: number): number[] {
   }
 
   return [];
-}
-
-function arrayEqualIgnoreOrder(
-  arr1: Array<number>,
-  arr2: Array<number>
-): boolean {
-  return (
-    arr1.length === arr2.length &&
-    arr1.every((item) => arr2.includes(item)) &&
-    arr2.every((item) => arr1.includes(item))
-  );
 }
 
 test.each([{ nums: [2, 7, 11, 15], target: 9, expected: [0, 1] }])(
