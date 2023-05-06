@@ -1,19 +1,19 @@
 import { test, expect } from "vitest";
+import NumArray from "./utils/prefixSum";
 
 function subArraySumEqualK(nums: number[], k: number): number {
   let currentWindowSize = 1;
   let numberOfSubarrayCount = 0;
-  while (currentWindowSize <= nums.length) {
-    for (let i = 0; i < nums.length; i++) {
-      const subArray = new Array(currentWindowSize);
-      let localSum = nums[i];
-      subArray.push(nums[i]);
-      for (let j = i + 1; j < i + currentWindowSize; j++) {
-        localSum += nums[j];
-        subArray.push(nums[j]);
-      }
-      if (localSum === k) {
-        numberOfSubarrayCount += 1;
+
+  const numArray = new NumArray(nums);
+
+  while (currentWindowSize < numArray.prefixSum.length) {
+    for (let i = currentWindowSize; i < numArray.prefixSum.length; i++) {
+      if (
+        numArray.prefixSum[i] - numArray.prefixSum[i - currentWindowSize] ===
+        k
+      ) {
+        numberOfSubarrayCount++;
       }
     }
     currentWindowSize++;
