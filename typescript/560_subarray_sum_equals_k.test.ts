@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
 import NumArray from "./utils/prefixSum";
 
-function subArraySumEqualK(nums: number[], k: number): number {
+function solutionOne(nums: number[], k: number): number {
   let currentWindowSize = 1;
   let numberOfSubarrayCount = 0;
 
@@ -19,6 +19,10 @@ function subArraySumEqualK(nums: number[], k: number): number {
     currentWindowSize++;
   }
   return numberOfSubarrayCount;
+}
+
+function subArraySumEqualK(nums: number[], k: number): number {
+  return solutionOne(nums, k);
 }
 
 test.each([
