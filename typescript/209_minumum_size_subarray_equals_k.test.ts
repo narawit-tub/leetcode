@@ -29,14 +29,40 @@ function solutionOne(nums: number[], k: number): number {
   return minimumSizeOfSubArray === Infinity ? 0 : minimumSizeOfSubArray;
 }
 
+// [2,3,1,2,4,3]
+function solutionTwo(nums: number[], k: number): number {
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let accumulatedSum = 0;
+  let currentMinimumSize = Infinity;
+  while (rightIndex < nums.length) {
+    // Move R index
+    accumulatedSum += nums[rightIndex];
+
+    // Met criteria
+    while (accumulatedSum >= k) {
+      currentMinimumSize = Math.min(
+        currentMinimumSize,
+        rightIndex - leftIndex + 1
+      );
+      accumulatedSum = accumulatedSum - nums[leftIndex];
+      leftIndex++;
+    }
+
+    rightIndex++;
+  }
+
+  return currentMinimumSize === Infinity ? 0 : currentMinimumSize;
+}
+
 function minimumSizeOfSubArrayEqualToK(nums: number[], k: number): number {
-  return solutionOne(nums, k);
+  return solutionTwo(nums, k);
 }
 
 test.each([
-  // { nums: [2, 3, 1, 2, 4, 3], k: 7, expected: 2 },
-  // { nums: [1, 4, 4], k: 4, expected: 1 },
-  // { nums: [1, 1, 1, 1, 1, 1, 1, 1], k: 11, expected: 0 },
+  { nums: [2, 3, 1, 2, 4, 3], k: 7, expected: 2 },
+  { nums: [1, 4, 4], k: 4, expected: 1 },
+  { nums: [1, 1, 1, 1, 1, 1, 1, 1], k: 11, expected: 0 },
   { nums: [1, 2, 3, 4, 5], k: 11, expected: 3 },
 ])("Expect $expected", ({ nums, k, expected }) => {
   expect(minimumSizeOfSubArrayEqualToK(nums, k)).toBe(expected);
