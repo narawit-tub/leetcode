@@ -1,4 +1,4 @@
-package arraystrings
+package twopointers
 
 import (
 	"fmt"
