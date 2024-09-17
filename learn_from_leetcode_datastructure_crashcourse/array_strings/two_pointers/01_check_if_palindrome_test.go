@@ -7,18 +7,19 @@ import (
 
 func TestCheckIfPalindrome(t *testing.T) {
 	var cases = []struct {
+		name        string
 		inputStr    string
 		isPalindrom bool
 	}{
-		{inputStr: "", isPalindrom: true},
-		{inputStr: "abcdcba", isPalindrom: true},
-		{inputStr: "abcde", isPalindrom: false},
-		{inputStr: "ab_ba", isPalindrom: true},
-		{inputStr: "aba", isPalindrom: true},
+		{name: "case A", inputStr: "", isPalindrom: true},
+		{name: "case B", inputStr: "abcdcba", isPalindrom: true},
+		{name: "case C", inputStr: "abcde", isPalindrom: false},
+		{name: "case D", inputStr: "ab_ba", isPalindrom: true},
+		{name: "case E", inputStr: "aba", isPalindrom: true},
 	}
 
 	for _, test := range cases {
-		t.Run(fmt.Sprintf("input Str: %s gets isPalindrome %v", test.inputStr, test.isPalindrom), func(t *testing.T) {
+		t.Run(fmt.Sprintf("name: %s --> input Str: %s gets isPalindrome %v", test.name, test.inputStr, test.isPalindrom), func(t *testing.T) {
 			got := checkIfPalindrome(test.inputStr)
 			if got != test.isPalindrom {
 				t.Errorf("got %v, want %v", got, test.isPalindrom)
@@ -29,9 +30,15 @@ func TestCheckIfPalindrome(t *testing.T) {
 
 func checkIfPalindrome(str string) bool {
 	left := 0
-	right := len(str)
+	right := len(str) - 1
 
 	for left < right {
-		
+		if str[left] != str[right] {
+			return false
+		}
+		left++
+		right--
 	}
+
+	return true
 }
