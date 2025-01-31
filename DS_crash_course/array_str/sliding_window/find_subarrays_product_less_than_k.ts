@@ -1,26 +1,31 @@
 function numSubarrayProductLessThanK(nums: number[], k: number): number {
-    if (k <= 0) return 0
+    if (k <= 1) return 0
 
-    let i: number = 0
-    let j: number = 0
-    let currentProd = 1
-    let subArrayCount = 0
+    let right:number = 0
+    let left:number = 0
+    let validSubArrayCount: number = 0
+    let currentProduct = 1;
+    //
+    while (right < nums.length) {
+        // Let's try to add element into window,
+        // try to follow constraint, a window should less than K
+        currentProduct *= nums[right]
 
-    while (i < nums.length) {
-        currentProd = nums[i] * currentProd
-
-        // If window is invalid, then keep remove element from left
-        while (currentProd >= k) {
-            currentProd /= nums[j]
-            j++;
+        // When window is invalid from adding more right element
+        // mean current window won't be able to reach constraint by adding more right element anymore
+        // so only thing we can do is removing left element of window
+        while(currentProduct >= k) {
+            currentProduct = currentProduct / nums[left]
+            left++
         }
 
-
-        subArrayCount = subArrayCount + i - j + 1 // Formula for calculating subArrays's total of any given array
-
-        // Keep explore
-        i++
+        // if this window still valid,
+        // then note down the answer
+        validSubArrayCount += right - left + 1 // From Math trick
+        right++
     }
 
-    return subArrayCount
+    return validSubArrayCount
 }
+
+// Math trick, number of valid subarray in a window is right - left + 1
