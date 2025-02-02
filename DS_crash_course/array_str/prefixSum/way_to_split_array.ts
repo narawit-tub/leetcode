@@ -17,5 +17,4 @@ function waysToSplitArray(nums: number[]): number {
 
     return ans
 }
-
-const tmp = waysToSplitArray([10, 4, -8, 7])
+waysToSplitArray([10, 4, -8, 7]);

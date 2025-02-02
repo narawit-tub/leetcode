@@ -22,6 +22,6 @@ function minStartValue(nums: number[]): number {
     }
 
     return startValue
-};
+}
 
 const tmp = minStartValue([1, -2, -3])
