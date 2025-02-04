@@ -21,6 +21,8 @@ function numSubarrayProductLessThanK(nums: number[], k: number): number {
 
         // if this window still valid,
         // then note down the answer
+        // THis is formular for counting new valid subarray, not
+        // for all possible valid subarray in any given window
         validSubArrayCount += right - left + 1 // From Math trick
         right++
     }
