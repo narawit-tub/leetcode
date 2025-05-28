@@ -1,3 +1,5 @@
+// ref: https://leetcode.com/problems/is-subsequence/description/
+
 function isSubsequence(s: string, t: string): boolean {
     if (s === "") return true
 
@@ -18,3 +20,11 @@ function isSubsequence(s: string, t: string): boolean {
 
     return false;
 };
+
+/*
+*  Algo summary
+*  assumption: We need just to know 's' is subsequence of 't' or not. So if All 'element' in 's' exist in 't' in order is fine
+*  How to check assumption:
+*  Is not subsequence when:
+*  - loop through
+* */
